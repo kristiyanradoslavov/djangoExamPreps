@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +17,13 @@
     <header>
         <nav>
             <img src="{% static 'images/headphones.png' %}" alt="headphones">
-            <a href="#">Home</a>
+            <a href="{% url 'index' %}">Home</a>
             <ul></ul>
             <ul>
-                <!--Only for user with created profile-->
-                <li><a href="{% url 'album add' %}">Create Album</a></li>
-                <li><a href="#">Profile</a></li>
+                {% if account %}
+                    <li><a href="{% url 'album add' %}">Create Album</a></li>
+                    <li><a href="{% url 'profile details' %}">Profile</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
