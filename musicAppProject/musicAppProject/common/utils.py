@@ -1,13 +1,15 @@
+from django.core.exceptions import ObjectDoesNotExist
+
 from musicAppProject.account.models import Profile
 from musicAppProject.album.models import Album
 
 
 def get_account():
-    account = Profile.objects.all()
-
-    if account:
+    from django.forms import models
+    try:
+        account = Profile.objects.get()
         return account
-    else:
+    except ObjectDoesNotExist:
         return None
 
 

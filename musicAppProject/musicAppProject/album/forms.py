@@ -15,11 +15,26 @@ class CreateAlbumForm(forms.ModelForm):
         model = Album
 
         fields = '__all__'
-        # widgets = {
-        #     "album_name": forms.Textarea(
-        #         attrs={'placeholder': ALBUM_NAME_PLACEHOLDER}
-        #     ),
-        #     "artist": forms.Textarea(
-        #         attrs={'placeholder': ARTIST_PLACEHOLDER}
-        #     )
-        # }
+
+        widgets = {
+            "album_name": forms.TextInput(
+                attrs={'placeholder': ALBUM_NAME_PLACEHOLDER}
+            ),
+            "artist": forms.TextInput(
+                attrs={'placeholder': ARTIST_PLACEHOLDER}
+            ),
+            'description': forms.Textarea(
+                attrs={'placeholder': DESCRIPTION_PLACEHOLDER}
+            ),
+            'image_url': forms.URLInput(
+                attrs={'placeholder': URL_PLACEHOLDER}
+            ),
+            'price': forms.NumberInput(
+                attrs={'placeholder': PRICE_PLACEHOLDER}
+            )
+        }
+
+    # def clean_price(self):
+    #     price = self.cleaned_data['price']
+    #
+    #     return f"{price:.0f}"

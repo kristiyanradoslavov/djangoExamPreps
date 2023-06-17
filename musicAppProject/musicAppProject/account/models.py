@@ -26,4 +26,3 @@ class Profile(models.Model):
             MinValueValidator(0)
         ]
     )
-

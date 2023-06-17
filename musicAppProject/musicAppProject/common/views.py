@@ -31,6 +31,6 @@ def available_profile_home(request):
 
     context = {
         'album': get_album(),
-        'account': get_account()
+        'profile': get_account(),
     }
     return render(request, 'common/home-with-profile.html', context)
