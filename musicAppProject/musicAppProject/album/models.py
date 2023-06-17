@@ -42,7 +42,6 @@ class Album(models.Model):
 
     price = models.FloatField(
         validators=(
-            # floor_float_number,
             MinValueValidator(0.0),
         ),
         blank=False,
@@ -52,3 +51,6 @@ class Album(models.Model):
     def clean(self):
         self.price = floor_float_number(self.price)
         super().clean()
+
+    class Meta:
+        ordering = ('pk',)

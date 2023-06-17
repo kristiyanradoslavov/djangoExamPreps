@@ -8,7 +8,7 @@ from musicAppProject.common.utils import get_account, get_album
 
 def index(request):
     if get_account():
-        return redirect(available_profile_home)
+        return available_profile_home(request)
 
     if request.method == "GET":
         form = RegistrationForm()
@@ -17,7 +17,7 @@ def index(request):
 
         if form.is_valid():
             form.save()
-            return redirect(available_profile_home)
+            return available_profile_home(request)
 
     context = {
         'form': form

@@ -1,10 +1,8 @@
 # common urls
 
 from django.urls import path
-from musicAppProject.common.views import index, available_profile_home
+from musicAppProject.common.views import index
 
 urlpatterns = [
     path('', index, name='index'),
-    path('home/', available_profile_home, name="available profile home"),
-
 ]

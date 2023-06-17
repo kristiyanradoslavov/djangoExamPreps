@@ -1,7 +1,8 @@
 # account views
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from musicAppProject.account.forms import ProfileDeleteForm
 from musicAppProject.album.models import Album
 from musicAppProject.common.utils import get_account
 
@@ -18,10 +19,22 @@ def profile_details(request):
 
 def profile_delete(request):
     profile = get_account()
-    # profile.delete()
+
+    if request.method == "GET":
+        form = ProfileDeleteForm(instance=profile)
+    else:
+        form = ProfileDeleteForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
 
     context = {
-        'profile': profile
+        'profile': profile,
+        'form': form,
     }
 
-    return render(request, 'account/profile-delete.html', context)
+    return render(
+        request,
+        'account/profile-delete.html',
+        context
+    )

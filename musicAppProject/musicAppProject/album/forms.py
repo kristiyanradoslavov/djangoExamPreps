@@ -4,7 +4,7 @@ from musicAppProject.album.models import Album
 from musicAppProject.album.utils import get_all_available_genres
 
 
-class CreateAlbumForm(forms.ModelForm):
+class BaseAlbum(forms.ModelForm):
     class Meta:
         ALBUM_NAME_PLACEHOLDER = "Album Name"
         ARTIST_PLACEHOLDER = "Artist"
@@ -34,7 +34,26 @@ class CreateAlbumForm(forms.ModelForm):
             )
         }
 
-    # def clean_price(self):
-    #     price = self.cleaned_data['price']
-    #
-    #     return f"{price:.0f}"
+
+class CreateAlbumForm(BaseAlbum):
+    pass
+
+
+class EditAlbumForm(BaseAlbum):
+    pass
+
+
+class DeleteAlbumForm(BaseAlbum):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__disable_fields()
+
+    def save(self, commit=True):
+        if commit:
+            self.instance.delete()
+
+        return self.instance
+
+    def __disable_fields(self):
+        for field_key, field in self.fields.items():
+            field.widget.attrs['readonly'] = True
