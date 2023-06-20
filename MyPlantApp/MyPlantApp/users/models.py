@@ -32,8 +32,7 @@ class Profile(models.Model):
         blank=False,
     )
 
-
-profile_picture = models.URLField(
-    null=True,
-    blank=True,
-)
+    profile_picture = models.URLField(
+        null=True,
+        blank=True,
+    )

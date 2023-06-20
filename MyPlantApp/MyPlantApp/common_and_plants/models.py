@@ -41,3 +41,6 @@ class Plant(models.Model):
         null=False,
         blank=False,
     )
+
+    class Meta:
+        ordering = ("id",)
