@@ -1,40 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style/style.css">
-    <title>CarCollection</title>
-</head>
-<body>
-  <header>
-        <!-- Navigation Bar -->
-        <h1><a class="index-navigation" href="#"><span>C</span>ARS <span>C</span>OLLECTION</a></h1>
-        <nav>
-            <a href="#">Catalogue</a>
-            <a href="#">Create Car</a>
-            <a href="#">Profile</a>
-        </nav>
-    </header>
+{% extends 'base.html' %}
 
-  <section id="create-page" class="auth">
+{% block main_content %}
 
-      <div class="container">
-        <h1>Are you sure you want to delete your profile?</h1>
-          <!-- Delete Profile Form -->
-        <form id='delete'>
+    <section id="create-page" class="auth">
 
-        <!-- Confirm Button -->
-        <input class="btn submit" type="submit" value="Yes">
+        <div class="container">
+            <h1>Are you sure you want to delete your profile?</h1>
+            <!-- Delete Profile Form -->
+            <form id='delete' action="{% url 'user delete' %}" method="post">
 
-        </form>
-      </div>
-    <!-- End Delete Profile Form -->
-  </section>
-  <!-- Footer -->
-  <footer>
-      &copy;SoftUni Team 2022. All rights reserved.
-  </footer>
-  <!-- End Footer -->
-</body>
-</html>
+                {{ form }}
+                <!-- Confirm Button -->
+                <input class="btn submit" type="submit" value="Yes">
+                {% csrf_token %}
+
+            </form>
+        </div>
+        <!-- End Delete Profile Form -->
+    </section>
+
+{% endblock %}

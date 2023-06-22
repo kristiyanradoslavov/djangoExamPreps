@@ -49,3 +49,6 @@ class Car(models.Model):
         null=False,
         blank=False,
     )
+
+    class Meta:
+        ordering = ['id']
