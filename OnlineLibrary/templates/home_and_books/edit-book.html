@@ -1,0 +1,19 @@
+{% extends 'home_and_books/home-with-profile.html' %}
+
+
+{% block content %}
+
+    <section id="edit-page" class="edit">
+        <form id="edit-form" action="{% url 'edit book' book.id %}" method="post">
+            <fieldset>
+                <legend>Edit Book</legend>
+
+                {{ form }}
+
+                <input class="button submit" type="submit" value="Edit">
+                {% csrf_token %}
+            </fieldset>
+        </form>
+    </section>
+
+{% endblock %}
