@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   web:
-    image: my_plant_app
+    image: ramun3/my_plant_app
     build: .
     command: gunicorn --bind=0.0.0.0:8000 MyPlantApp.wsgi:application
     ports:
